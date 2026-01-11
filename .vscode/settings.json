@@ -1,0 +1,4 @@
+{
+  "eslint.enable": true,             // ESLint 확장 사용
+  "eslint.validate": ["javascript"], // 적용할 언어 지정
+}
