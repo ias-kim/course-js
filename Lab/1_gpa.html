@@ -96,7 +96,33 @@ function calculate() {
     - document.getElementById("kor1").value
     - Number() 또는 parseInt() 사용
     */
+    let allAvg = 0
 
+    for (let i = 1; i <= 5; i++) {
+
+        let ko = Number(document.getElementById('kor'+ i).value);
+
+        let math = Number(document.getElementById('math'+ i).value);
+
+        let eng = Number(document.getElementById('eng'+ i).value);
+
+        let sum = ko + math + eng;
+
+        let avg = sum / 3;
+
+        let resultTotal = (document.getElementById('total' + i));
+        let resultAvg = (document.getElementById('avg'+ i));
+
+        allAvg += avg;
+
+        resultTotal.value = sum;
+        resultAvg.value = avg;
+    }
+
+    const currentAllAvg = allAvg / 5;
+    let resultAllAvg = document.getElementById('classAvg');;
+
+    resultAllAvg.value = currentAllAvg;
 }
 </script>
 

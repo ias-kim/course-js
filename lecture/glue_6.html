@@ -30,6 +30,7 @@
 
     <script>
         function getWeather() {
+            
             let city = document.getElementById("city").value;
             let resultDiv = document.getElementById("result");
 
@@ -51,7 +52,7 @@
             const cityName = coords[city].name;
 
             const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`;
-
+            // JS의 Pool를 이용해 서버로 부터 받은 데이터를 비동기적으로 요청 후 반환
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
