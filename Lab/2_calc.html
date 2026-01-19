@@ -52,7 +52,18 @@
     // =========================
     // TODO 1) 필요한 DOM 요소 가져오기
     // =========================
+    let a = (document.getElementById('a'))
+    let b = (document.getElementById('b'))
 
+    let add = document.getElementById('outAdd');
+    let sub = document.getElementById('outSub');
+    let mul = document.getElementById('outMul');
+    let div = document.getElementById('outDiv');
+
+    let calc = document.getElementById('btnCalc');
+    let reset = document.getElementById('btnReset');
+    
+    const err = "ERROR"
     // =========================
     // TODO 2) 계산 버튼 이벤트 처리
     // - a,b를 Number로 변환
@@ -60,7 +71,27 @@
     // - b==0이면 div만 DIV/0
     // =========================
     function handleCalculate() {
-      // TODO
+      const valA = Number(a.value)
+      const valB = Number(b.value)
+      
+      if (a === '' || b === '' || isNaN(a) || isNaN(b)) {
+        add.value = err;
+        sub.value = err;
+        mul.value = err;
+        div.value = err;
+        return;
+      }
+
+      if (b === 0) {
+        div.value = "DIV/0"
+      }
+
+      add.value = valA + valB;
+      sub.value = valA - valB;
+      mul.value = valA * valB;
+      div.value = valA / valB;
+
+      return handleCalculate;
     }
 
     // =========================
@@ -68,12 +99,26 @@
     // - 입력 2개 + 결과 4개 전부 "" 로
     // =========================
     function handleReset() {
-      // TODO
+      a.value = '';
+      b.value = '';
+
+      add.value = '';
+      sub.value = '';
+      mul.value = '';
+      div.value = '';
+
+      return handleReset;
     }
 
     // =========================
     // TODO 4) 버튼에 이벤트 연결
     // =========================
+    calc.addEventListener('click', () => {
+      handleCalculate();
+    })
+    reset.addEventListener('click', () => {
+      handleReset();
+    })
   </script>
 </body>
 </html>
