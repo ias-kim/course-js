@@ -1,7 +1,13 @@
-console.log(bar)
-console.log()
+let x = 10;
 
-var bar
+function outer() {
+  let x = 20;
+  function inner() {
+    console.log(x);
+  }
+  inner();
+}
 
+outer(); // 20
 
 
