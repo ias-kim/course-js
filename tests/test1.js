@@ -1,13 +1,8 @@
-let x = 10;
-
-function outer() {
-  let x = 20;
-  function inner() {
-    console.log(x);
-  }
-  inner();
+class A {
+    constructor() {this.x = 1;}
+    f() { console.log(this.x);}
 }
 
-outer(); // 20
+const a = new A();
 
-
+setTimeout(() => a.f(), 0);
