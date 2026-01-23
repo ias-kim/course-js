@@ -113,12 +113,8 @@
     // =========================
     // TODO 4) 버튼에 이벤트 연결
     // =========================
-    calc.addEventListener('click', () => {
-      handleCalculate();
-    })
-    reset.addEventListener('click', () => {
-      handleReset();
-    })
+    calc.addEventListener('click', handleCalculate());
+    reset.addEventListener('click', handleReset());
   </script>
 </body>
 </html>
