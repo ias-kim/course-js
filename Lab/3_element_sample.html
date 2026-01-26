@@ -20,40 +20,51 @@
   <ul id="list"></ul>
 
   <script>
+    // id를 가져와 변수
     const txt = document.getElementById("txt");
     const btnAdd = document.getElementById("btnAdd");
     const list = document.getElementById("list");
 
+    // 요소를 만드는 함수
     function createItem(text) {
+      // 리스트 요소 생성
       const li = document.createElement("li");
 
+      // span 요소 생성
       const span = document.createElement("span");
-      span.textContent = text;
+      span.textContent = text; // 입력값 대입
 
+      // 입력할 텍스트 
       const input = document.createElement("input");
-      input.type = "text";
-      input.value = text;
-      input.style.display = "none";
+      input.type = "text"; // tag 타입 
+      input.value = text; // value 형
+      input.style.display = "none"; 
 
+      // 수정 버튼
       const btnEdit = document.createElement("button");
       btnEdit.textContent = "수정";
 
+      // 저장 버튼
       const btnSave = document.createElement("button");
       btnSave.textContent = "저장";
       btnSave.style.display = "none";
 
+      // 취소 버튼
       const btnCancel = document.createElement("button");
       btnCancel.textContent = "취소";
       btnCancel.style.display = "none";
 
+      // 삭제 버튼
       const btnDel = document.createElement("button");
       btnDel.textContent = "삭제";
 
+      // 이전값에서 대입
       let prevText = text;
 
+      // 수정 모드
       function enterEditMode() {
         prevText = span.textContent;
-        input.value = prevText;
+        input.value = prevText; // 이전값 대입
 
         span.style.display = "none";
         input.style.display = "";
@@ -68,6 +79,7 @@
         input.select();
       }
 
+      // 나가기 버튼
       function exitEditMode() {
         span.style.display = "";
         input.style.display = "none";
@@ -79,8 +91,10 @@
         btnDel.disabled = false;
       }
 
+      // 수정모드
       btnEdit.addEventListener("click", enterEditMode);
 
+      // 저장 클릭 이벤트
       btnSave.addEventListener("click", () => {
         const value = input.value.trim();
         if (!value) return;
@@ -88,18 +102,22 @@
         exitEditMode();
       });
 
+      // 수정 모드
       btnCancel.addEventListener("click", () => {
         span.textContent = prevText;
         exitEditMode();
       });
 
+      // 삭제 버튼 클릭시
       btnDel.addEventListener("click", () => li.remove());
 
+      // 키다운 이번트
       input.addEventListener("keydown", (e) => {
         if (e.key === "Enter") btnSave.click();
         if (e.key === "Escape") btnCancel.click();
       });
 
+      // 요소 추가
       li.appendChild(span);
       li.appendChild(input);
       li.appendChild(document.createTextNode(" "));
@@ -111,6 +129,7 @@
       return li;
     }
 
+    // 추가 클릭시 
     btnAdd.addEventListener("click", () => {
       const value = txt.value.trim();
       if (!value) return;
@@ -121,6 +140,7 @@
       txt.focus();
     });
 
+    // 
     txt.addEventListener("keydown", (e) => {
       if (e.key === "Enter") btnAdd.click();
     });

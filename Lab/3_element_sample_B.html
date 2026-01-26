@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        const app = createElement({
+            tagName: 'div',
+            properties: { id: 'app' },
+            parent: document.body,
+            children: [
+            ]
+        })
+        const header = createElement({
+                            
+                    tagName: 'div',
+                    properties: { id: 'header'},
+                    parent: app,
+                    children: [
+                        {
+                            tagName: 'h1',
+                            properties: { innerText: 'To-do list' },
+                        },
+                        {
+                            tagName: 'div',
+                            properties: { innerText: 'counter' },
+                            children: [
+                                { tagName: 'span', properties: { innerText: 'Total' } },
+                                { tagName: 'span', properties: { innerText: '0' } },
+                                { tagName: 'span', properties: { innerText: 'Completed' } },
+                                { tagName: 'span', properties: { innerText: 'Total' } },
+                            ]
+                        }
+                    ]
+                
+        });
+
+        const inputFiled = createElement({
+                    tagName: 'div',
+                    properties: { id: 'input-field'},
+                    parent: app,
+                    children: [
+                        {
+                            tagName: 'input',
+                            properties: { placeholder: '할일을 입력해주세요' },
+                        },
+                        {
+                            tagName: 'button',
+                            properties: { innerText: 'Add' },
+                        },
+                    ]
+                },)
+
+        const itemListContainer = createElement()
+
+
+        function createElement({tagName, properties, parent, children, count = 1}) {
+
+            const create = () => {
+                const element = document.createElement(tagName);
+                Object.assign(element, properties);
+                parent?.appendChild(element);
+                children?.map((child) => {
+                    child.parent = element;
+                    createElement(child);
+                });            
+                return element;
+            }
+            
+            if (count > 1) {
+                for (let i = 0; i > count; ++i) {
+                    const array = [];
+                    array.push(craete())
+                }
+            } else {
+                create();
+            }
+        }
+    </script>
+</body>
+</html>
