@@ -21,25 +21,30 @@
 
   <script>
     // id를 가져와 변수
-    const txt = document.getElementById("txt");
+    const txtInput = document.getElementById("txt");
     const btnAdd = document.getElementById("btnAdd");
     const list = document.getElementById("list");
 
-    const item = btnAdd.addEventListener('click', createElement({
+    // createElement 호출해 item(li) 생성
+    btnAdd.addEventListener('click', () => {
+
+      const textValue = txtInput.value.trim();
+      if (!textValue) return;
+
+      const item = createElement({
         tagName: 'li',
         parent: list,
         children: [
-        { tagName: 'span', properties: {'innerText': txt } },
-        { tagName: 'input', properties: {'innerText': txt } },
+        { tagName: 'span', properties: {'innerText': textValue } },
+        { tagName: 'input', properties: {'value': textValue } },
         { tagName: 'button', properties: {'innerText': '수정' } },
         { tagName: 'button', properties: {'innerText': '삭제' } },
         { tagName: 'button', properties: {'innerText': '저징' } },
         { tagName: 'button', properties: {'innerText': '취소' } },
       ],
-    }));
+    });
 
-    const [span, input, updateBtn, removeBtn, saveBtn, cancelBtn] = item.children;
-    span = txt;
+    const [span, input, updateBtn, removeBtn, saveBtn, cancleBtn] = item.children;
 
     // 취소, 저장 버튼 비활성화
     input.style.display = 'none';
@@ -53,8 +58,7 @@
 
     // 업데이트 처리
     updateBtn.addEventListener('click', () => {
-        prevText = inputValue;
-        input.value = span.value
+        input.value = span.innerText;
 
         span.style.display = "none";
         input.style.display = "";
@@ -66,26 +70,29 @@
         removeBtn.disabled = true;
 
         input.focus();
-        input.select();
     })
 
     // 버튼 클릭 이벤트
     saveBtn.addEventListener('click', () => {
-        const inputValue = txt.value.trim();
-        inputValue.value
-        if (!inputValue) {
-            return;
+        const newValue = input.value.trim();
+        if (newValue) {
+            span.innerText = newValue;
         }
-        txt.style.display = "";
+        txtInput.style.display = "";
         input.style.display = "none";
-        txt = '';
+        updateBtn.style.display = '';
+        cancleBtn.style.display = 'none';
+        saveBtn.style.display = "none";
+
+        removeBtn.disabled = false;
+        
+        input.focus();
     })
 
     // 취소 버튼 처리
     cancleBtn.addEventListener('click', () => {
-        input = ''
 
-        txt.style.display = "";
+        txtInput.style.display = "";
         input.style.display = "none";
 
         updateBtn.style.display = "";
@@ -94,7 +101,11 @@
 
         removeBtn.disabled = false;
     })
-    
+
+    txtInput.focus();
+    txtInput.value = '';
+    });
+
 
     // 엘리먼트 생성 함수
     function createElement({
@@ -104,7 +115,6 @@
       children,
       count = 1,
     }) {
-      const create = () => {
         const element = document.createElement(tagName);
         Object.assign(element, properties);
 
@@ -112,19 +122,12 @@
 
         if (children) {
             children.forEach(child => {
-                children.parent = element;
+                child.parent = element;
                 createElement(child);
             });
         }
         return element;
       }
-      
-      if (count > 1) {
-        Array.from({length: count}, create())
-      } else {
-        create();
-      }
-    }
   </script>
 </body>
 </html>
