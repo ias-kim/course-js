@@ -57,6 +57,13 @@
   - board.appendChild(div)
   */
 
+  for (let i = 0; i <= 8; i++) {
+    let createBoard = document.createElement('div');
+    createBoard.className = "cell";
+    createBoard.dataset.index = i;
+    board.appendChild(createBoard);
+  }
+
   // 2. 랜덤 두더지 등장
   /*
   [문제 2]
@@ -72,6 +79,19 @@
   - cells[rand].classList.add("mole")
   - cells[rand].textContent = "🐹"
   */
+  const cells = document.querySelectorAll('.cell');
+  
+  function showMole() {
+    cells.forEach((cell) => {
+      cell.classList.remove('mole');
+      cell.textContent = ""
+    })
+    let rand = Math.floor(Math.random() * 9);
+    cells[rand].classList.add("mole");
+    currentIndex = rand;
+    cells[rand].textContent = "🐹"
+  }
+
 
   // 3. 클릭 이벤트 처리
   /*
@@ -88,6 +108,14 @@
   - score++
   - scoreEl.textContent = score
   */
+  cells.forEach(cell => {
+    cell.addEventListener("click", () => {
+      if (Number(cell.dataset.index) === currentIndex) {
+        score++;
+        scoreEl.textContent = score;
+      }
+    })
+  })
   
 
   // 4. 게임 시작 버튼
@@ -109,6 +137,38 @@
   - clearInterval(timer)
   - alert("게임 종료! 점수: " + score)
   */
+  startBtn.addEventListener("click", () => {
+    if (timer) return;
+    timer = setInterval(showMole, 800);
+    setTimeout(() => {
+      clearInterval(timer);
+      alert("게임 종료! 점수: " + score);
+    }, 10000);
+  })
+
+  function createElement({
+    tagNames,
+    properties,
+    parent,
+    children,
+    count = 1
+  }) {
+    const element = document.createElement(tagNames);
+    Object.assign(element, properties);
+
+    if (parent) parent.appendChild(element);
+    if (children) {
+      children.forEach(child => {
+        child.parent(element);
+        createElement(child);
+      });
+    }
+    if (count > 1) {
+      createElement(element);
+    } else {
+      return element;
+    }
+  }
 </script>
 
 </body>
