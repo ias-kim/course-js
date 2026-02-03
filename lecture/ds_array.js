@@ -24,7 +24,7 @@ console.log('\n');
 
 // 2. 배열 요소 접근
 // -----------------------------------------
-
+fruits.splice(0, 1); // delete [0]
 console.log('=== 배열 요소 접근 ===');
 console.log('첫 번째 과일:', fruits[0]);  // 인덱스는 0부터 시작
 console.log('두 번째 과일:', fruits[1]);
