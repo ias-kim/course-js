@@ -14,7 +14,7 @@ stdList.sort((a, b) => b.sum - a.sum);
 console.log("ID\tName\tKor\tMath\tEng\tSum\tAvg");
 console.log("─".repeat(56));
 
-// 학생 정보 출력 (toString 활용)
+// 학생 정보 출력 (toString 활용) 
 stdList.forEach(v => console.log(`${v}`));
 
 // 구분선

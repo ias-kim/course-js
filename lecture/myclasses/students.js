@@ -5,7 +5,7 @@ class Student {
     #sum = undefined;
     #avg = undefined;
 
-    constructor(argId, argName, argKorean = 0, argMath = 0, argEnglish = 0){
+    constructor(argId, argName, argKorean = 0, argMath = 0, argEnglish = 0) {
         this.id = argId;
         this.name = argName;
         this.#grades = [argKorean, argMath, argEnglish];
