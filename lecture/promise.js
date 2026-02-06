@@ -57,7 +57,7 @@ p1.then(result => {
 console.log("\n===== 예제 2: Promise 체이닝 =====");
 
 const fetchData = (data) => {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
         setTimeout(() => resolve(data), 500);
     });
 };

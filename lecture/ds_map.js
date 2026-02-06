@@ -194,6 +194,7 @@ const charCount = new Map();
 for (const char of text) {
     if (char === ' ') continue;  // 공백 제외
     charCount.set(char, (charCount.get(char) || 0) + 1);
+    console.log(charCount);
 }
 
 console.log('문자 빈도수:');
