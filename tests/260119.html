@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="input_value" placeholder="Put numbers">
+    <!-- 버튼이 클릭했을 때 실행될 함수 -->
+    <button id="add_btn" onclick="cnt()">Add</button>
+        <!-- 버튼을 클릭할 때마다 값을 유지함-->
+    <script>    
+        // 엘리먼트라는 객체로 만들어서 Dom Tree 형태로 제공
+        /**
+         * 1. 이벤트 소스
+         * 2. 이벤트 리스너
+         * 3. 이벤트 핸들러
+         * */
+
+        // outer function
+        function add() {
+            // previous value + current value
+            // show result
+            let total = 0; // 2. 조건
+
+            // inner function (무명함수 + arrow function)
+            return () => { // 1. 조건
+                const input = document.getElementById("input_value").value;
+                total += Number(input);
+                alert(`새로운 값${input}, 누적 값${total}`);
+            }
+        }
+
+        const cnt = add();
+    </script>
+</body>
+</html>
